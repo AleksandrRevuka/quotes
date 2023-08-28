@@ -1,13 +1,7 @@
-{% extends "quoteapp/base.html" %}
-
-{% block content %}
+{% extends "quoteapp/base.html" %} {% block content %}
 <div class="col-md-8">
-    {% for quote in quotes %}
-    {% include "quoteapp/quote_detail.html" with quote=quote %}
-    {% endfor %}
+  {% for quote in quotes %} {% include "quoteapp/quote_detail.html" with
+  quote=quote %} {% endfor %}
 </div>
-{% endblock %}
-
-{% block top_ten_tags %}
-{% include "quoteapp/top_tags.html" with top_tags=top_tags%}
-{% endblock %}
+{% endblock %} {% block top_ten_tags %} {% include "quoteapp/top_tags.html" with
+top_tags=top_tags%} {% endblock %}

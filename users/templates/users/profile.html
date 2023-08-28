@@ -1,32 +1,33 @@
-{% extends "quoteapp/base.html" %}
-
-{% block content %}
+{% extends "quoteapp/base.html" %} {% block content %}
 
 <div>
-    <h1>Profile page: {{user.username}}</h1>
-    <img src="{{ user.profile.avatar.url }}" alt="avatar of user"/>
+  <h1>Profile page: {{user.username}}</h1>
+  <img src="{{ user.profile.avatar.url }}" alt="avatar of user" />
 </div>
 
 {% if messages %}
 <div>
-    {% for message in messages %}
-    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
-    {% endfor %}
+  {% for message in messages %}
+  <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>
+    {{ message }}
+  </div>
+  {% endfor %}
 </div>
 {% endif %}
 
 <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="mb-3 col-md-4 mt-3">
-        {{ profile_form.avatar }}
-        <span>{{ profile_form.errors.avatar }}</span>
-    </div>
+  {% csrf_token %}
+  <div class="mb-3 col-md-4 mt-3">
+    {{ profile_form.avatar }}
+    <span>{{ profile_form.errors.avatar }}</span>
+  </div>
 
-    <div class="d-grid gap-2 col-md-4">
-        <button class="btn btn-outline-primary" type="submit">Save Changes</button>
-        <button class="btn btn-outline-warning" type="reset" class="secondary">Reset</button>
-    </div>
-
+  <div class="d-grid gap-2 col-md-4">
+    <button class="btn btn-outline-primary" type="submit">Save Changes</button>
+    <button class="btn btn-outline-warning" type="reset" class="secondary">
+      Reset
+    </button>
+  </div>
 </form>
 
 {% endblock content %}
