@@ -1,39 +1,41 @@
-{% extends "quoteapp/base.html" %} {% block content %} {% if messages %}
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+
+{% if messages %}
 <div>
-  {% for message in messages %}
-  <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>
-    {{ message }}
-  </div>
-  {% endfor %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+    {% endfor %}
 </div>
 {% endif %}
 
 <div class="container">
-  <h2>Login</h2>
+    <h2>Login</h2>
 
-  <form action="{% url 'users:login' %}" method="post">
-    {% csrf_token %}
-    <div class="form-floating mb-3 col-md-4">
-      {{ form.username }}
-      <label for="{{ form.username.id_for_label }}">Username:</label>
-      {% for error in form.username.errors %}
-      <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
-      {% endfor %}
-    </div>
-
-    <div class="form-floating mb-3 col-md-4">
-      {{ form.password }}
-      <label for="{{ form.password.id_for_label }}">Password:</label>
-      {% for error in form.password.errors %}
-      <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
-      {% endfor %}
-    </div>
-
-    <div class="d-grid gap-2 col-md-4">
-      <button type="submit" class="btn btn-outline-primary">Submit</button>
-      <button type="reset" class="btn btn-outline-warning">Reset</button>
-    </div>
-  </form>
+    <form action="{% url 'users:login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-floating mb-3 col-md-4">
+            {{ form.username }}
+            <label for="{{ form.username.id_for_label }}">Username:</label>
+            {% for error in form.username.errors %}
+                <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
+            {% endfor %}
+        </div>
+        
+        <div class="form-floating mb-3 col-md-4">
+            {{ form.password }}
+            <label for="{{ form.password.id_for_label }}">Password:</label>
+            {% for error in form.password.errors %}
+                <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
+            {% endfor %}
+        </div>
+        
+        <div class="d-grid gap-2 col-md-4">
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+            <button type="reset" class="btn btn-outline-warning">Reset</button>
+        </div>
+    </form>
 </div>
 
 {% endblock %}

@@ -1,22 +1,16 @@
-<div
-  class="mb-3 p-3 bg-info bg-opacity-10 border border-info border-start-1 rounded"
->
-  <span class="fst-italic"> "{{ quote.quote }}" </span>
-  <div>
-    by
-    <small class="fw-bold text-primary" itemprop="author"
-      >{{ quote.author }}</small
-    >
-    <a href="{% url 'quoteapp:get_info_author' quote.author %}">(about)</a>
-  </div>
+<div class="mb-3 p-3 bg-info bg-opacity-10 border border-info border-start-1 rounded">
+    <span class="fst-italic"> "{{ quote.quote }}" </span>
+    <div>
+        by  
+        <small class="fw-bold text-primary" itemprop="author">{{ quote.author }}</small>
+        <a href="{% url 'quoteapp:get_info_author' quote.author %}">(about)</a>
+    </div>
 
-  <div>
-    Tags: {% for tag in quote.tags.all %}
-    <a
-      class="p-1 bg-info bg-opacity-50 border border-info border-start-1 rounded link-underline link-underline-opacity-0"
-      href="{% url 'quoteapp:look_for_tag' tag.name %}"
-      >{{ tag.name }}</a
-    >
-    {% endfor %}
-  </div>
+    <div>
+        Tags:
+        {% for tag in quote.tags.all %}
+        <a class="p-1 bg-info bg-opacity-50 border border-info border-start-1 rounded link-underline link-underline-opacity-0" 
+        href="{% url 'quoteapp:look_for_tag' tag.name %}">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
 </div>

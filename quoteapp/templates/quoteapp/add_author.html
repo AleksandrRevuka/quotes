@@ -1,44 +1,48 @@
-{% extends "quoteapp/base.html" %} {% block content %} {{ form.media }}
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+{{ form.media }}
 <form method="POST" action="{% url 'quoteapp:add_author' %}">
-  {% csrf_token %}
+    {% csrf_token %}
 
-  <div class="form-floating mb-3 col-md-4">
-    {{ form.fullname }}
-    <label for="{{ form.fullname.id_for_label }}">Fullname:</label>
-    {% for error in form.fullname.errors %}
-    <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
-    {% endfor %}
-  </div>
+    <div class="form-floating mb-3 col-md-4">
+        {{ form.fullname }}
+        <label for="{{ form.fullname.id_for_label }}">Fullname:</label>
+        {% for error in form.fullname.errors %}
+            <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
+        {% endfor %}
+    </div>
+    
+    <div class="form-floating mb-3 col-md-4" id="datepicker" data-target-input="nearest">
+        {{ form.born_date }}
+        <label data-target="#datepicker" data-toggle="datepicker"></label>
+    </div>
+    
+    <div class="form-floating mb-3 col-md-4">
+        {{ form.born_location }}
+        <label for="{{ form.born_location.id_for_label }}">Born location:</label>
+        {% for error in form.born_location.errors %}
+            <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
+        {% endfor %}
+    </div>
 
-  <div
-    class="form-floating mb-3 col-md-4"
-    id="datepicker"
-    data-target-input="nearest"
-  >
-    {{ form.born_date }}
-    <label data-target="#datepicker" data-toggle="datepicker"></label>
-  </div>
+    <div class="form-floating mb-3 col-md-4">
+        {{ form.description }}
+        <label for="{{ form.description.id_for_label }}">Description:</label>
+        {% for error in form.description.errors %}
+            <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
+        {% endfor %}
+    </div>
 
-  <div class="form-floating mb-3 col-md-4">
-    {{ form.born_location }}
-    <label for="{{ form.born_location.id_for_label }}">Born location:</label>
-    {% for error in form.born_location.errors %}
-    <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
-    {% endfor %}
-  </div>
-
-  <div class="form-floating mb-3 col-md-4">
-    {{ form.description }}
-    <label for="{{ form.description.id_for_label }}">Description:</label>
-    {% for error in form.description.errors %}
-    <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
-    {% endfor %}
-  </div>
-
-  <div class="d-grid gap-2 col-md-4">
-    <button type="submit" class="btn btn-outline-primary">Add author</button>
-    <button type="reset" class="btn btn-outline-warning">Reset</button>
-  </div>
+    <div class="d-grid gap-2 col-md-4">
+        <button type="submit" class="btn btn-outline-primary">Add author</button>
+        <button type="reset" class="btn btn-outline-warning">Reset</button>
+    </div>
 </form>
 
 {% endblock %}
+
+
+
+
+

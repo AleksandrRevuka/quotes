@@ -1,40 +1,36 @@
-{% extends "quoteapp/base.html" %} {% block content %}
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
 
 <form method="POST" action="{% url 'quoteapp:add_quote' %}">
-  {% csrf_token %}
+    {% csrf_token %}
 
-  <div class="form-floating mb-3 col-md-4">
-    {{ form.quote }}
-    <label for="{{ form.quote.id_for_label }}">Enter the quote:</label>
-    {% for error in form.quote.errors %}
-    <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
-    {% endfor %}
-  </div>
+    <div class="form-floating mb-3 col-md-4">
+        {{ form.quote }}
+        <label for="{{ form.quote.id_for_label }}">Enter the quote:</label>
+        {% for error in form.quote.errors %}
+            <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
+        {% endfor %}
+    </div>
 
-  <div class="form-floating mb-3 col-md-4">
-    {{ form.author }}
-    <label for="{{ form.quote.id_for_label }}">Authors:</label>
-  </div>
+    <div class="form-floating mb-3 col-md-4">
+        {{ form.author }}
+        <label for="{{ form.quote.id_for_label }}">Authors:</label>
+    </div>
+    
+    <div class="mb-3 col-md-4">
+        <label for="tags" class="form-label">Tags:</label>
+        <select class="form-select" size="10" name="tags" aria-label="Tags" multiple>
+            {% for tag in tags %}
+                <option value="{{ tag.pk }}">{{ tag.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
 
-  <div class="mb-3 col-md-4">
-    <label for="tags" class="form-label">Tags:</label>
-    <select
-      class="form-select"
-      size="10"
-      name="tags"
-      aria-label="Tags"
-      multiple
-    >
-      {% for tag in tags %}
-      <option value="{{ tag.pk }}">{{ tag.name }}</option>
-      {% endfor %}
-    </select>
-  </div>
-
-  <div class="d-grid gap-2 col-md-4">
-    <button type="submit" class="btn btn-outline-primary">Add quote</button>
-    <button type="reset" class="btn btn-outline-warning">Reset</button>
-  </div>
+    <div class="d-grid gap-2 col-md-4">
+        <button type="submit" class="btn btn-outline-primary">Add quote</button>
+        <button type="reset" class="btn btn-outline-warning">Reset</button>
+    </div>
 </form>
 
 {% endblock %}
