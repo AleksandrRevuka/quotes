@@ -1,0 +1,12 @@
+<div class="col-md-4" style="text-align: right">
+    <h2>Top Ten tags</h2>
+    <div style="text-align: right;">
+        {% for tag in top_tags %}
+        <span class="tag-item" style="display: block; margin: 4px;">
+            <a class="p-1 bg-info bg-opacity-50 border border-info border-start-1 rounded link-underline link-underline-opacity-0"
+               style="font-size: calc(28px - {{ forloop.counter }} * 2px);"
+               href="{% url 'quoteapp:look_for_tag' tag.name %}">{{ tag.name }}</a>
+        </span>
+        {% endfor %}
+    </div>
+</div>

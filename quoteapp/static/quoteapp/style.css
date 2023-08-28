@@ -1,0 +1,17 @@
+.alert-error, .errorlist {
+  color: crimson;
+}
+
+.alert-success {
+  color: green;
+}
+
+.tag {
+  padding: 0.25rem;
+  background-color: rgba(0, 123, 255, 0.5); 
+  border: 1px solid #0d6efd; 
+  border-left-width: 1px; 
+  border-radius: 0.25rem; 
+  text-decoration: underline; 
+  text-decoration-color: rgba(0, 0, 0, 0);
+}
