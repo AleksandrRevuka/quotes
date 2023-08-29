@@ -15,47 +15,47 @@
 <body>
 <main style="width: 1200px" class="container">
 
-    <nav class="navbar navbar-expand-lg bg-info bg-opacity-10 mb-3 mt-3 border border-start-0 border-end-0 border-info">
-        <div class="container-fluid">
-          <h1 class="navbar-brand text-primary fs-2 fw-bold" href="/">Quotes to Scrape</h1>
-          <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
+  <nav class="navbar navbar-expand-lg bg-info bg-opacity-10 mb-3 mt-3 border border-start-0 border-end-0 border-info">
+      <div class="container-fluid">
+        <h1 class="navbar-brand text-primary fs-2 fw-bold" href="/">Quotes to Scrape</h1>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Action
+                  </a>
+                  <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'quoteapp:add_tag' %}">add Tag</a></li>
+                  <li><a class="dropdown-item" href="{% url 'quoteapp:add_quote' %}">add Quote</a></li>
+                  <li><a class="dropdown-item" href="{% url 'quoteapp:add_author' %}">add Author</a></li>
+                  </ul>
               </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Action
-                    </a>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'quoteapp:add_tag' %}">add Tag</a></li>
-                    <li><a class="dropdown-item" href="{% url 'quoteapp:add_quote' %}">add Quote</a></li>
-                    <li><a class="dropdown-item" href="{% url 'quoteapp:add_author' %}">add Author</a></li>
-                    </ul>
-                </li>
-                {% endif %}
-            </ul>
-            <form method="post" action="{% url 'quoteapp:search_data' %}" class="d-flex" role="search">
-              {% csrf_token %}
-              <input name="search_input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            {% if user.is_authenticated %}
-                <div class="d-flex ms-5">
-                    <a class="nav-link text-primary fw-bold fst-italic" href="{% url 'users:profile' %}">{{ user.username }}</a>
-                    <a class="nav-link ms-3" href="{% url 'users:logout' %}">Logout</a>
-                </div>
-            {% else %}
-                <div class="d-flex ms-5">
-                    <a class="nav-link" href="{% url 'users:signup' %}">Sign Up</a>
-                    <a class="nav-link ms-3" href="{% url 'users:login' %}">Login</a>
-                </div>
-            {% endif %}
+              {% endif %}
+          </ul>
+          <form method="post" action="{% url 'quoteapp:search_data' "None" 1 %}" class="d-flex" role="search">
+            {% csrf_token %}
+            <input name="search_input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          {% if user.is_authenticated %}
+              <div class="d-flex ms-5">
+                  <a class="nav-link text-primary fw-bold fst-italic" href="{% url 'users:profile' %}">{{ user.username }}</a>
+                  <a class="nav-link ms-3" href="{% url 'users:logout' %}">Logout</a>
+              </div>
+          {% else %}
+              <div class="d-flex ms-5">
+                  <a class="nav-link" href="{% url 'users:signup' %}">Sign Up</a>
+                  <a class="nav-link ms-3" href="{% url 'users:login' %}">Login</a>
+              </div>
+          {% endif %}
 
-          </div>
         </div>
-      </nav>
+      </div>
+    </nav>
 
     <div class="row">
         {% block content %} {% endblock %}

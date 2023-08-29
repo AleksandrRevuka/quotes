@@ -44,7 +44,12 @@ urlpatterns = [
         name='add_quote'
     ),
     path(
-        'search_data/', 
+        'search_data/<str:data>', 
+        views.search_data, 
+        name='search_data'
+    ),
+    path(
+        'search_data/<str:data>/<int:page>', 
         views.search_data, 
         name='search_data'
     ),

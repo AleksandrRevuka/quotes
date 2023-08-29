@@ -64,7 +64,7 @@ def get_top_tags() -> List[Tag]:
     
     :return: The top 10 tags, based on the number of quotes associated with each tag
     """
-    top_tags = Tag.objects.annotate(num_quotes=Count('quote')).order_by('-num_quotes')[:10]
+    top_tags = Tag.objects.alias(num_quotes=Count('quote')).order_by('-num_quotes')[:10]
     return top_tags
 
 
@@ -153,18 +153,29 @@ def add_quote(request: HttpRequest) -> TemplateResponse:
     return render(request, 'quoteapp/add_quote.html', {"tags": tags, 'form': QuoteForm()})
 
 
-def search_data(request: HttpRequest) -> TemplateResponse:
+def search_data(request: HttpRequest, data: str, page: int = 1) -> TemplateResponse:
     """
-    The search_data function takes the search input from the user and returns a list of quotes that contain tags with names starting with this input.
-        The function also returns a list of top tags.
+    The search_data function takes in a request and data, which is the search query.
+    It then searches for tags that start with the search query, and finds all quotes that have those tags.
+    Then it searches for authors whose fullname contains the search query, and finds all quotes by those authors.
+    Finally it combines these two sets of quotes into one set of unique quotes (no duplicates), 
+    and returns a TemplateResponse object containing this set of unique quotes.
     
-    :param request: Get the data from the form
-    :return: A template with a list of quotes that have the same tag as in the search field
+    :param request: HttpRequest: Get the request object from the view
+    :param data: str: Pass the search data from one page to another
+    :param page: int: Determine which page of the paginator to display
+    :return: A templateresponse object
     """
-    data = request.POST.get('search_input')
+    
+    if page == 1:
+        if request.POST.get('search_input'):
+            data = request.POST.get('search_input')
 
-    tags = Tag.objects.filter(name__startswith=data)
+    tags = Tag.objects.filter(name__istartswith=data)
     quotes = Quote.objects.filter(tags__in=tags)
-    top_tags = get_top_tags()
-
-    return render(request, 'quoteapp/search.html', {"quotes": quotes, "top_tags": top_tags})
+    
+    authors = Author.objects.filter(fullname__iregex=data)
+    quotes = quotes.union(Quote.objects.filter(author__in=authors))
+        
+    page_object, top_tags = get_page_and_top_tags(quotes, page)
+    return render(request, 'quoteapp/search.html', {"quotes": page_object, "top_tags": top_tags, "data": data})
