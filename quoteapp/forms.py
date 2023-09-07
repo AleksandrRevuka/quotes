@@ -1,5 +1,6 @@
-from django.forms import ModelForm, CharField, TextInput, Textarea, DateField, Select, CheckboxSelectMultiple
+from django.forms import ModelForm, CharField, TextInput, DateField, Select, CheckboxSelectMultiple
 from bootstrap_datepicker_plus.widgets import DatePickerInput
+from tinymce.widgets import TinyMCE
 from .models import Tag, Author, Quote
 
 
@@ -23,7 +24,7 @@ class AuthorForm(ModelForm):
                               required=True, 
                               widget=TextInput(attrs={'class': 'form-control', 'placeholder': 'Born location'}))
     description = CharField(required=True, 
-                            widget=Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}))
+                            widget=TinyMCE(attrs={'placeholder': 'Description'}))
     
     class Meta:
         model = Author
@@ -36,7 +37,7 @@ class QuoteForm(ModelForm):
         model = Quote
         fields = ['quote', 'author']
         widgets = {
-            'quote': Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter the quote'}),
+            'quote': TinyMCE(attrs={'placeholder': 'Enter the quote'}),
             'author': Select(attrs={'class': 'form-select'}),
             'tags': CheckboxSelectMultiple(attrs={'class': 'form-select'}),
         }

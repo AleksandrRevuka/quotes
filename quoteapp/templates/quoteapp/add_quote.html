@@ -7,10 +7,7 @@
 
     <div class="form-floating mb-3 col-md-4">
         {{ form.quote }}
-        <label for="{{ form.quote.id_for_label }}">Enter the quote:</label>
-        {% for error in form.quote.errors %}
-            <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
-        {% endfor %}
+        <label for="{{ form.quote.id_for_label }}">{{ form.media }}</label>
     </div>
 
     <div class="form-floating mb-3 col-md-4">

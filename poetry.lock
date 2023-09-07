@@ -254,6 +254,17 @@ files = [
 django = ">=3.2"
 
 [[package]]
+name = "django-tinymce"
+version = "3.6.1"
+description = "A Django application that contains a widget to render a form field as a TinyMCE editor."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-tinymce-3.6.1.tar.gz", hash = "sha256:6f4f6227c2c608052081a436a1e3054c441caae24c9e0c8c3010536e24749e29"},
+    {file = "django_tinymce-3.6.1-py3-none-any.whl", hash = "sha256:da5732413f51cf854352e3148f06f170b59d95a6c6a43fd9f7ccfdd1849f4bf9"},
+]
+
+[[package]]
 name = "dnspython"
 version = "2.4.2"
 description = "DNS toolkit"
@@ -1294,4 +1305,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "d3c2be9ce45af603d512b4dd89698474d0fa69eace966382ba88742a9ae599e0"
+content-hash = "645522e0214ec54d383957fb4ad3c2679a34e053c10bf1f3ae00aa3e84b15b2d"

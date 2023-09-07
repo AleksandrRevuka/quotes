@@ -28,10 +28,7 @@
 
     <div class="form-floating mb-3 col-md-4">
         {{ form.description }}
-        <label for="{{ form.description.id_for_label }}">Description:</label>
-        {% for error in form.description.errors %}
-            <label class="text-danger" for="floatingInputInvalid"> {{ error }}</label>
-        {% endfor %}
+        <label for="{{ form.description.id_for_label }}">{{ form.media }}</label>
     </div>
 
     <div class="d-grid gap-2 col-md-4">
