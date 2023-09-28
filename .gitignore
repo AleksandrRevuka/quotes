@@ -1,6 +1,7 @@
 .vscode
 .idea
 .pre-commit-config.yaml
+.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

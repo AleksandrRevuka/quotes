@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, ReferenceField, ListField, DateTimeField, CASCADE
+from mongoengine import CASCADE, DateTimeField, Document, ListField, ReferenceField, StringField
 
 
 class AuthorM(Document):

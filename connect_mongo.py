@@ -1,16 +1,13 @@
+import os
+from dotenv import load_dotenv
+
 from mongoengine import connect
-import configparser
-import pathlib
 
+load_dotenv()
 
-file_config = pathlib.Path(__file__).parent.joinpath("config.ini")
-
-config = configparser.ConfigParser()
-config.read(file_config)
-
-mongo_user = config.get("mongodb", "user")
-mongodb_pass = config.get("mongodb", "password")
-domain = config.get("mongodb", "domain")
-db_name = config.get("mongodb", "db_name")
+mongo_user = os.getenv("MONGO_USER")
+mongodb_pass = os.getenv("MONGO_PASSWORD")
+domain = os.getenv("MONGO_DOMAIN")
+db_name = os.getenv("MONGO_DB_NAME")
 
 connect(host=f"mongodb+srv://{mongo_user}:{mongodb_pass}@{domain}/{db_name}?retryWrites=true&w=majority")

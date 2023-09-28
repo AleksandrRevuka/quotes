@@ -1,10 +1,8 @@
 import connect_mongo
-
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-
 from models_mongo import AuthorM, QuoteM
-from quoteapp.models import Author, Tag, Quote
+from quoteapp.models import Author, Quote, Tag
 
 
 class Command(BaseCommand):
