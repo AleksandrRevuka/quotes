@@ -9,6 +9,17 @@ class Command(BaseCommand):
     help = "Import data from MongoDB"
 
     def handle(self, *args, **options):
+        """
+        The handle function is the main function of a command. It takes two arguments:
+            args - A list of positional arguments passed to the command.
+            options - A dictionary of named options passed to the command.
+        
+        :param self: Access the class attributes and methods
+        :param *args: Pass a non-keyworded, variable-length argument list to the function
+        :param **options: Pass in options to the command
+        :return: None
+        :doc-author: Trelent
+        """
         self.stdout.write("Connected to MongoDB")
         authors_mongo = AuthorM.objects()
         quotes_mongo = QuoteM.objects()

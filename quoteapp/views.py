@@ -97,7 +97,9 @@ def add_tag(request: HttpRequest) -> TemplateResponse:
     if request.method == "POST":
         form = TagForm(request.POST)
         if form.is_valid():
-            form.save()
+            tag_name = form.cleaned_data['name']
+            if not Tag.objects.filter(name=tag_name).exists():
+                form.save()
             return redirect(to="quoteapp:main")
         else:
             return render(request, "quoteapp/add_tag.html", {"form": form})
